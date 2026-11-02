@@ -1,12 +1,18 @@
 import { readdirSync } from 'node:fs';
 import type { RigConfig } from './config.js';
+import { readNight } from './digest/reader.js';
+import type { RunStatus } from './digest/types.js';
 import { lastBeat, type Beat } from './heartbeat.js';
+
+export type NightCounts = Record<RunStatus, number>;
 
 export type Status = {
   adapter: string;
   installed: string;
   lastBeat: Beat | null;
   nights: string[];
+  /** Event counts from each night digest; null means the file vanished while reading. */
+  nightCounts: Record<string, NightCounts | null>;
 };
 
 // Nights on disk = runs/<YYYY-MM-DD>.jsonl, newest first.
@@ -23,10 +29,27 @@ export function nightsOnDisk(runsDir: string): string[] {
 }
 
 export function readStatus(config: RigConfig): Status {
+  const nights = nightsOnDisk(config.runsDir);
+  const nightCounts: Record<string, NightCounts | null> = {};
+
+  for (const night of nights) {
+    try {
+      nightCounts[night] = readNight(config.runsDir, night)?.counts ?? null;
+    } catch (error) {
+      // The file can disappear between listing runs/ and opening its digest.
+      if (error && typeof error === 'object' && 'code' in error && error.code === 'ENOENT') {
+        nightCounts[night] = null;
+        continue;
+      }
+      throw error;
+    }
+  }
+
   return {
     adapter: config.adapter,
     installed: config.installed,
     lastBeat: lastBeat(),
-    nights: nightsOnDisk(config.runsDir),
+    nights,
+    nightCounts,
   };
 }
