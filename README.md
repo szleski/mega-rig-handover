@@ -36,9 +36,8 @@ mkdir -p ../preview
 curl --fail --silent --show-error http://127.0.0.1:8787/digest/2026-10-28 --output ../preview/index.html
 ```
 
-Publish that file only after human approval. After review, restart rig with
-`LANE_MARKER` empty, export the page again, and obtain separate approval before
-replacing the file at the same public URL. Confirm that the page says "no marker
-set", then archive `plan.md` with its issue links. Keep preview HTML out of git.
-
-This plan is tracked in [issues #1–#8](https://github.com/szleski/mega-rig-handover/issues?q=label%3Aplan%3Amorning-digest).
+The review and cleanup are complete. On 2026-11-02, the marker-free HTML replaced
+the reviewed page at the same public URL; the deployed bytes matched the clean copy,
+and the banner reported that no marker was set. The finished plan and its issue links
+are in [2026-11-02-morning-digest.md](docs/plans/done/2026-11-02-morning-digest.md).
+Keep preview HTML out of git.

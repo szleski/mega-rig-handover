@@ -1,6 +1,6 @@
 ---
 plan: morning-digest
-status: ready
+status: done
 owner: rook
 opened: 2026-10-29
 ---
@@ -77,3 +77,18 @@ page again with `LANE_MARKER` unset (the banner reads "no marker set") and uploa
 link. Move this plan to `docs/plans/done/` with its issue list.
 
 Done when: the preview link no longer shows the lane marker.
+
+## Issues
+
+- #1 Digest contract — https://github.com/szleski/mega-rig-handover/issues/1
+- #2 Run log reader — https://github.com/szleski/mega-rig-handover/issues/2
+- #3 Digest page — https://github.com/szleski/mega-rig-handover/issues/3
+- #4 Digest JSON — https://github.com/szleski/mega-rig-handover/issues/4
+- #5 Board links — https://github.com/szleski/mega-rig-handover/issues/5
+- #6 Route tests — https://github.com/szleski/mega-rig-handover/issues/6
+- #7 Review preview — https://github.com/szleski/mega-rig-handover/issues/7
+- #8 Preview cleanup — https://github.com/szleski/mega-rig-handover/issues/8
+
+## Review and cleanup
+
+Reviewed from the public preview. On 2026-11-02, the marker-free HTML replaced the preview at the same URL; the deployed bytes matched the clean copy, and the banner reported that no marker was set.
