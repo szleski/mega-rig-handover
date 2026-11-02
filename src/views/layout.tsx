@@ -14,6 +14,14 @@ const css = `
   table { border-collapse: collapse; width: 100%; }
   th, td { text-align: left; padding: .35rem .75rem .35rem 0; border-bottom: 1px solid var(--line); }
   th { color: var(--mute); font-weight: normal; }
+  .digest-scroll { max-width: 100%; overflow-x: auto; }
+  .digest-scroll:focus-visible { outline: 2px solid var(--fg); outline-offset: .2rem; }
+  .digest-table { width: max-content; min-width: 100%; }
+  .digest-table th, .digest-table td { vertical-align: top; }
+  .digest-nowrap { white-space: nowrap; }
+  .digest-number { text-align: right; font-variant-numeric: tabular-nums; }
+  .digest-scroll-hint { display: none; color: var(--mute); }
+  @media (max-width: 64rem) { .digest-scroll-hint { display: block; } }
   .warn { color: var(--warn); }
   .mute { color: var(--mute); }
 `;
